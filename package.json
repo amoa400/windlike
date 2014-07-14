@@ -1,0 +1,27 @@
+{
+  "author": "amoa400 <amoa400@163.com>",
+  "name": "WindLike",
+  "description": "a realtime communication library for mobile & browser",
+  "version": "0.0.1",
+  "keywords": [
+    "realtime",
+    "communication",
+    "mqtt",
+    "engine.io",
+    "socket.io"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amoa400/WindLike.git"
+  },
+  "main": "index.js",
+
+  "dependencies": {
+    "mqtt": "0.3.11"
+  },
+
+  "devDependencies": {
+    "debug": "*",
+    "colors": "*"
+  }
+}
