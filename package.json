@@ -22,6 +22,8 @@
 
   "devDependencies": {
     "debug": "*",
-    "colors": "*"
+    "colors": "*",
+    "mocha": "*",
+    "should": "*"
   }
 }
