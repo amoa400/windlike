@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>windlike demo</title>
+	<meta charset="utf-8">
+
+	<script>
+		// config bgein
+		var serverUrl = '192.168.1.203';
+		var serverPort = '2883';
+		var token = '123456';
+		// config end
+	</script>
+
+	<style>
+		body {
+			background: #ccc;
+		}
+		.chat-box {
+			width: 800px;
+			height: 300px;
+			border: 1px solid #999;
+			background: #eee;
+			margin: 0 auto;
+			margin-top: 50px;
+			padding: 30px;
+			overflow-y: scroll;
+		}
+		.chat-box div {
+			margin-top: 20px;
+		}
+		.chat-box div:first-child {
+			margin-top: 0px;
+		}
+		.pub {
+			width: 862px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		.pub input {
+			width: 846px;
+			height: 30px;
+			font-size: 16px;
+			padding: 8px;
+			border: 1px solid #999;
+		}
+		.github {
+			width: 862px;
+			margin: 0 auto;
+			margin-top: 20px;
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="chat" class="chat-box">
+		<div>Welcome to WindLike demo.</div>
+	</div>
+
+	<div class="pub">
+		<input id="input" placeholder="type a message, press enter to send...">
+	</div>
+
+	<div class="github">
+		<a href="https://github.com/amoa400/WindLike">github page: WindLike</a>
+	</div>
+
+</body>
+
+</html>
+
+<script src="./windlike.js"></script>
+<script>
+
+	var client = new windlike('http://' + serverUrl + ':' + serverPort + '?token=' + token);
+	
+	client.on('connected', function() {
+		client.subscribe('chat');
+	});
+	
+	client.on('message', function(topic, message) {
+		document.getElementById('chat').innerHTML += "<div>" + message + "</div>";
+  	document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+	});
+
+	document.onkeydown = function(e) {
+		var theEvent = e || window.event;
+		var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+		if (code == 13) {
+			client.publish('chat', document.getElementById('input').value);
+			document.getElementById('input').value = '';
+		}
+	}
+
+</script>
+
+
+
+
+
+
