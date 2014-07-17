@@ -1,1 +1,1 @@
-global.windlike = require('../lib/browser-client.js');
+global.windlike = require('../lib/browser_client.js');

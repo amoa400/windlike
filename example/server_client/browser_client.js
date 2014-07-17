@@ -1,4 +1,4 @@
-var Client = require('../../lib/browser-client');
+var Client = require('../../lib/browser_client');
 
 var client = new Client('http://localhost:2883?token=browser_client');
 

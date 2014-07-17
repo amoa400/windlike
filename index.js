@@ -16,5 +16,4 @@ process.on('uncaughtException', function (err) {
 
   fs.appendFile(__dirname + '/error.log', error);
 });
-
 */

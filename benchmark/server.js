@@ -1,11 +1,16 @@
 var util = require('util');
 var colors = require('colors');
-var windlike = require('../../index');
+var windlike = require('../index');
 
 var server = windlike.createServer();
 util.log(('server start...').yellow);
 
+var cache = {};
 var log = function(conn, action) {
+	if (cache[action] && parseInt((new Date().getTime() - cache[action].getTime())) < 5000) return;
+
+	cache[action] = new Date();
+
 	util.log((conn.id + ' ' + conn.token + ' ' + action).green);
 }
 
@@ -38,3 +43,8 @@ server.on('error', function(conn) {
 setInterval(function() {
 	util.log(('tot conns: ' + server.connsCount).red);
 }, 1000);
+
+process.on('uncaughtException', function (err) {
+	util.log('!!! Error !!!'.red);
+  console.error(err);
+});
