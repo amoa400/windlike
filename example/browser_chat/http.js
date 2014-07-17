@@ -1,6 +1,6 @@
 var http = require('http');
 var fs = require('fs');
-var windlike = require('../index');
+var windlike = require('../../index');
 
 // realtime connection server
 var server = windlike.createServer();

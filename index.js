@@ -1,5 +1,6 @@
 module.exports = require('./lib/windlike');
 
+/*
 var fs = require('fs');
 
 process.on('uncaughtException', function (err) {
@@ -16,3 +17,4 @@ process.on('uncaughtException', function (err) {
   fs.appendFile(__dirname + '/error.log', error);
 });
 
+*/
