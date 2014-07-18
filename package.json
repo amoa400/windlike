@@ -1,8 +1,8 @@
 {
   "author": "amoa400 <amoa400@163.com>",
-  "name": "WindLike",
+  "name": "windlike",
   "description": "a realtime communication library for mobile & browser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "realtime",
     "communication",
