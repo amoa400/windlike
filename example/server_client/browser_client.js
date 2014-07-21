@@ -10,7 +10,6 @@ client.on('connected', function() {
 		console.log('browser_client got: [' + topic + '] ' + message);
 	});
 
-
 	setInterval(function() {
 		client.publish('chat', 'I\'m a message from browser_client.');
 	}, 2000);
