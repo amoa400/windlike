@@ -2,7 +2,7 @@
   "author": "amoa400 <amoa400@163.com>",
   "name": "windlike",
   "description": "a realtime communication library for mobile & browser",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": [
     "realtime",
     "communication",
