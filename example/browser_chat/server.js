@@ -5,12 +5,14 @@ var windlike = require('../../index');
 // realtime connection server
 var server = windlike.createServer();
 
-server.on('subscribe', function(conn, topic, qos, messageId) {
-	conn.subscribe(topic, qos, messageId);
-});
+server.on('connection', function(conn) {
+	conn.on('subscribe', function(topic) {
+		this.subscribe(topic);
+	});
 
-server.on('publish', function(conn, topic, message) {
-	conn.publish(topic, message);
+	conn.on('publish', function(topic, message) {
+		this.publish(topic, message);
+	});
 });
 
 // http server

@@ -11,28 +11,28 @@ var log = function(conn, action) {
 
 server.on('connection', function(conn) {
 	log(conn, 'connected');
-});
 
-server.on('subscribe', function(conn, topic) {
-	log(conn, 'subscribe');
-	conn.subscribe(topic);
-});
+	conn.on('subscribe', function(topic) {
+		log(this, 'subscribe');
+		this.subscribe(topic);
+	});
 
-server.on('unsubscribe', function(conn, topic) {
-	log(conn, 'unsubscribe');
-});
+	conn.on('unsubscribe', function(topic) {
+		log(this, 'unsubscribe');
+	});
 
-server.on('publish', function(conn, topic, message) {
-	log(conn, 'publish');
-	conn.publish(topic, message);
-});
+	conn.on('publish', function(topic, message) {
+		log(this, 'publish');
+		this.publish(topic, message);
+	});
 
-server.on('close', function(conn) {
-	log(conn, 'close');
-});
+	conn.on('close', function() {
+		log(this, 'close');
+	});
 
-server.on('error', function(conn) {
-	log(conn, 'error');
+	conn.on('error', function() {
+		log(this, 'error');
+	});
 });
 
 setInterval(function() {
