@@ -9,9 +9,12 @@ As for mobile, WindLike uses MQTT protocol as communication method.
 ## How to install?  
     npm install windlike
 
-## API
+## Server API
 
-[Server API](https://github.com/amoa400/WindLike/wiki/Server-API)  
-[Server Connection API](https://github.com/amoa400/WindLike/wiki/Server-Connection-API)  
-[Browser Client API](https://github.com/amoa400/WindLike/wiki/Browser-Client-API)  
-Mobile Client API (TODO)
+[Server](https://github.com/amoa400/WindLike/wiki/Server-API)  
+[Connection](https://github.com/amoa400/WindLike/wiki/Server-Connection-API)  
+
+## Client API
+
+[Browser](https://github.com/amoa400/WindLike/wiki/Browser-Client-API)  
+Mobile (TODO)
