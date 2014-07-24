@@ -19,7 +19,7 @@ function count() {
 
 function publish() {
   sent++;
-  client.publish("test", "payload");
+  client.publish("test", JSON.stringify("payload"));
   setImmediate(publish);
 }
 

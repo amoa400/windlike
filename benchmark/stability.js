@@ -15,7 +15,7 @@ var receive = function(topic, message) {
 
 // add max conns
 for (var i = 0; i < maxConns; i++) {
-	client[i] = new Client('http://localhost:2883?token=' + i);
+	client[i] = new Client('http://localhost:1884?token=' + i);
 	client[i].on('connected', function() {
 		realClientCount++;
 		this.subscribe('test');
@@ -31,7 +31,7 @@ clientCount = maxConns;
 setInterval(function() {
 	if (Math.random() * 10 < 8) return;
 
-	client[clientCount] = new Client('http://localhost:2883?token=' + clientCount);
+	client[clientCount] = new Client('http://localhost:1884?token=' + clientCount);
 	client[clientCount].on('connected', function() {
 		realClientCount++;
 		this.subscribe('test');
