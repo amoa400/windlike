@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>windlike demo</title>
+	<meta charset="utf-8">
+
+	<script>
+		// config bgein
+		var serverUrl = '192.168.1.203';
+		var serverPort = '1884';
+		var token = '123456';
+		// config end
+	</script>
+
+	<style>
+		body {
+			background: #ccc;
+		}
+		.chat-box {
+			width: 800px;
+			height: 300px;
+			border: 1px solid #999;
+			background: #eee;
+			margin: 0 auto;
+			margin-top: 50px;
+			padding: 30px;
+			overflow-y: scroll;
+		}
+		.chat-box div {
+			margin-top: 20px;
+		}
+		.chat-box div:first-child {
+			margin-top: 0px;
+		}
+		.pub {
+			width: 862px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		.pub input {
+			width: 846px;
+			height: 30px;
+			font-size: 16px;
+			padding: 8px;
+			border: 1px solid #999;
+		}
+		.github {
+			width: 862px;
+			margin: 0 auto;
+			margin-top: 20px;
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="chat" class="chat-box">
+		<div>Welcome to WindLike demo.</div>
+		<div>总连接：<span id="totConn">0</span></div>
+		<div>历史消息数：<span id="totMessage">0</span></div>
+	</div>
+
+	<div class="pub">
+		<input id="input" placeholder="type a message, press enter to send...">
+	</div>
+
+	<div class="github">
+		<a href="https://github.com/amoa400/WindLike" target="_blank">github page: WindLike</a>
+	</div>
+
+</body>
+
+</html>
+
+<script src="./windlike.js"></script>
+<script>
+
+	var totConn = 0;
+	var totMessage = 0;
+
+	var createUser = function() {
+		if (parseInt(Math.random() * 10) === 1) return;
+
+		var token = parseInt(Math.random() * 1000000);
+		var client = new windlike('http://' + serverUrl + ':' + serverPort + '?token=' + token);
+
+		client.on('connected', function() {
+			totConn++;
+			client.subscribe('chatPub.1.2');
+			client.subscribe('chatSub.1.2');
+		});
+
+		client.on('message', function(topic, message) {
+			if (topic != 'chatSub.2') return;
+			console.log(message.message);
+		});
+
+		var action = function() {
+			if (parseInt(Math.random() * 100) === 1) {
+				client.close();
+				totConn--;
+			} else {
+				//totMessage++;
+				//client.publish('chatPub.2', Math.random().toString());
+			}
+		}
+
+		setInterval(action, parseInt(Math.random() * 60000) + 500);
+
+	};
+
+	setInterval(createUser, 20);
+
+	var sta = function() {
+		document.getElementById('totConn').innerHTML = totConn.toString();
+		document.getElementById('totMessage').innerHTML = totMessage.toString();
+	};
+
+	setInterval(sta, 1000);
+
+</script>
+
+
+
+
+
+
